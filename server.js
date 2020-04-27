@@ -9,12 +9,14 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());
 
-app.get("/", function (req, res) {
-  res.sendFile(path.join(__dirname, "/public/index.html"));
+app.use(express.static(path.join(__dirname, "client/build")));
+
+app.get("/api/people", function (req, res) {
+  res.sendFile(path.join(__dirname, "/db/db.json"));
 });
 
-app.get("/data", function (req, res) {
-  res.sendFile(path.join(__dirname, "./db/db.json"));
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname + "/client/build/index.html"));
 });
 
 app.listen(PORT, () => console.log(`App is listening on PORT ${PORT}`));
