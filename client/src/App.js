@@ -8,7 +8,7 @@ class App extends React.Component {
   };
 
   async componentDidMount() {
-    const url = "http://localhost:5000/data";
+    const url = "/api/people";
     const response = await fetch(url);
     const person = await response.json();
     this.setState({ username: person[0].username });
