@@ -1,5 +1,7 @@
 import React from "react";
 import "./App.css";
+import Box from "./components/Box";
+import { Container } from "reactstrap";
 
 class App extends React.Component {
   state = {
@@ -7,18 +9,12 @@ class App extends React.Component {
     password: null,
   };
 
-  async componentDidMount() {
-    const url = "/api/people";
-    const response = await fetch(url);
-    const person = await response.json();
-    this.setState({ username: person[0].username });
-    this.setState({ password: person[0].password });
-  }
   render() {
     return (
-      <div>
-        <div>{this.state.username}</div>
-        <div>{this.state.password}</div>
+      <div className="background">
+        <Container>
+          <Box />
+        </Container>
       </div>
     );
   }
