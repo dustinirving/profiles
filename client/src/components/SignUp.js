@@ -54,9 +54,9 @@ export default class SignUp extends React.Component {
     });
     if (valid) {
       this.postApiCall();
-      alert("You have successfully created an account");
+      alert("You have successfully created an account.");
     } else {
-      alert("The username already exists");
+      alert("The username already exists.");
     }
   };
 
