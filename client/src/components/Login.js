@@ -15,7 +15,6 @@ export default class Login extends React.Component {
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-
   handleInputChange = (event) => {
     event.preventDefault();
     this.setState({
@@ -25,17 +24,36 @@ export default class Login extends React.Component {
 
   handleSubmit = async (event) => {
     event.preventDefault();
-    await this.apiCall();
+    const input = this.state;
+    const data = await this.apiCall();
+    this.validation(data, input);
     this.setState({
       username: "",
       password: "",
     });
-    console.log(this.state);
   };
 
   apiCall = async () => {
     const response = await axios.get("/api/people");
     console.log(response.data);
+    return response.data;
+  };
+
+  validation = (data, input) => {
+    let valid = false;
+    data.forEach((item) => {
+      if (
+        item.username === input.username &&
+        item.password === input.password
+      ) {
+        valid = true;
+      }
+    });
+    if (valid) {
+      alert("You have successfully signed in");
+    } else {
+      alert("Your password and username don't match");
+    }
   };
 
   render() {

@@ -25,16 +25,39 @@ export default class SignUp extends React.Component {
 
   handleSubmit = async (event) => {
     event.preventDefault();
-    await this.apiCall();
+    const data = await this.getApiCall();
+    const input = this.state;
+    this.validation(data, input);
+
     this.setState({
       username: "",
       password: "",
     });
   };
 
-  apiCall = async () => {
+  getApiCall = async () => {
+    const response = await axios.get("/api/people");
+    console.log(response.data);
+    return response.data;
+  };
+  postApiCall = async () => {
     const response = await axios.post("/api/people", this.state);
     console.log(response.data);
+  };
+
+  validation = (data, input) => {
+    let valid = true;
+    data.forEach((item) => {
+      if (item.username === input.username) {
+        valid = false;
+      }
+    });
+    if (valid) {
+      this.postApiCall();
+      alert("You have successfully created an account");
+    } else {
+      alert("The username already exists");
+    }
   };
 
   render() {
