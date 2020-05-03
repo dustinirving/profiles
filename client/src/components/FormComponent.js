@@ -47,7 +47,7 @@ export default class FormComponent extends React.Component {
             <Input
               type="text"
               name="username"
-              placeholder="Enter a username"
+              placeholder={this.props.usernamePlaceHolder}
               value={this.state.username}
               onChange={this.handleInputChange}
             />
@@ -55,7 +55,7 @@ export default class FormComponent extends React.Component {
             <Input
               type="password"
               name="password"
-              placeholder="Enter a password"
+              placeholder={this.props.passwordPlaceHolder}
               value={this.state.password}
               onChange={this.handleInputChange}
             />
@@ -63,7 +63,7 @@ export default class FormComponent extends React.Component {
             <div className="row mt-4">
               <div className="col-4"></div>
               <Button className="col-4" type="submit ">
-                Sign Up
+                {this.props.type}
               </Button>
               <div className="col-4"></div>
             </div>
