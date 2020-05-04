@@ -53,8 +53,14 @@ export default class SignUp extends React.Component {
       }
     });
     if (valid) {
-      this.postApiCall();
-      alert("You have successfully created an account.");
+      if (input.username.length < 6) {
+        alert("Your username must be at least 6 characters.");
+      } else if (input.password.length < 6) {
+        alert("Your password must be at least 6 characters.");
+      } else {
+        this.postApiCall();
+        alert("You have successfully created an account.");
+      }
     } else {
       alert("The username already exists.");
     }
