@@ -50,9 +50,9 @@ export default class Login extends React.Component {
       }
     });
     if (valid) {
-      alert("You have successfully signed in");
+      alert("You have successfully signed in.");
     } else {
-      alert("Your password and username don't match");
+      alert("Your password and username don't match.");
     }
   };
 
